@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizion ARX - Brand Design Board</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 31, 58, 0.8) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(138, 180, 248, 0.2);
+        }
+
+        .logo-showcase {
+            margin-bottom: 40px;
+        }
+
+        .logo-showcase img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7dd3fc 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #8ab4f8;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            background: rgba(26, 31, 58, 0.6);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 180, 248, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #7dd3fc;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, #7dd3fc 0%, #8b5cf6 100%);
+            border-radius: 3px;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .color-card {
+            background: rgba(10, 14, 39, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(138, 180, 248, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(125, 211, 252, 0.3);
+        }
+
+        .color-swatch {
+            height: 150px;
+            width: 100%;
+            position: relative;
+        }
+
+        .color-info {
+            padding: 25px;
+        }
+
+        .color-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .color-codes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .color-code {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(138, 180, 248, 0.1);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-label {
+            color: #8ab4f8;
+            font-weight: 600;
+        }
+
+        .code-value {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .desc-text {
+            color: #b8c5d6;
+            margin-bottom: 30px;
+        }
+
+        /* Typography */
+        .typography-showcase {
+            display: grid;
+            gap: 40px;
+        }
+
+        .font-family {
+            background: rgba(10, 14, 39, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 180, 248, 0.15);
+        }
+
+        .font-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7dd3fc;
+            margin-bottom: 20px;
+        }
+
+        .font-samples {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .font-sample {
+            padding: 20px;
+            background: rgba(138, 180, 248, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .sample-label {
+            font-size: 0.85rem;
+            color: #8ab4f8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .orbitron-sample {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .inter-sample {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Logo Variations */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .logo-variant {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(138, 180, 248, 0.2);
+        }
+
+        .logo-variant.dark-bg {
+            background: #0a0e27;
+        }
+
+        .logo-variant.light-bg {
+            background: #ffffff;
+        }
+
+        .logo-variant img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .variant-label {
+            font-size: 1rem;
+            color: #8ab4f8;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .light-bg .variant-label {
+            color: #1a1f3a;
+        }
+
+        /* Usage Guidelines */
+        .guidelines {
+            display: grid;
+            gap: 25px;
+        }
+
+        .guideline-item {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: rgba(10, 14, 39, 0.6);
+            border-radius: 12px;
+            border-left: 4px solid #7dd3fc;
+        }
+
+        .guideline-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .guideline-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #7dd3fc;
+            margin-bottom: 10px;
+        }
+
+        .guideline-content p {
+            color: #b8c5d6;
+            line-height: 1.8;
+        }
+
+        /* Spacing System */
+        .spacing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .spacing-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(10, 14, 39, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(138, 180, 248, 0.15);
+        }
+
+        .spacing-visual {
+            width: 100%;
+            background: linear-gradient(135deg, #7dd3fc 0%, #8b5cf6 100%);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .spacing-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .spacing-value {
+            color: #8ab4f8;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Favicon Showcase */
+        .favicon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .favicon-item {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(138, 180, 248, 0.2);
+        }
+
+        .favicon-preview {
+            background: rgba(138, 180, 248, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .favicon-preview img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .favicon-label {
+            font-family: 'Orbitron', sans-serif;
+            color: #7dd3fc;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .favicon-size {
+            color: #8ab4f8;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            border-top: 1px solid rgba(138, 180, 248, 0.2);
+        }
+
+        footer p {
+            color: #8ab4f8;
+            font-size: 0.95rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                border: 1px solid #ddd;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .color-grid,
+            .logo-grid,
+            .favicon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-showcase">
+                <img src="logo_transparent.png" alt="Vizion ARX Solutions Logo">
+            </div>
+            <h1>VIZION ARX</h1>
+            <p class="subtitle">BRAND DESIGN SYSTEM</p>
+        </header>
+
+        <!-- Color Palette Section -->
+        <section class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <p class="desc-text">
+                The Vizion ARX color palette combines futuristic cyan and purple gradients with deep navy backgrounds, creating a modern, tech-forward aesthetic.
+            </p>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);"></div>
+                    <div class="color-info">
+                        <div class="color-name">Cyan Primary</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#7DD3FC</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">125, 211, 252</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">199°, 95%, 74%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);"></div>
+                    <div class="color-info">
+                        <div class="color-name">Purple Accent</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#8B5CF6</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">139, 92, 246</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">258°, 90%, 66%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0a0e27;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Dark Navy</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#0A0E27</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">10, 14, 39</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">232°, 59%, 10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a1f3a;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Navy Blue</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#1A1F3A</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">26, 31, 58</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">231°, 38%, 16%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #8ab4f8;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Light Blue</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#8AB4F8</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">138, 180, 248</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">217°, 89%, 76%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #ffffff;"></div>
+                    <div class="color-info">
+                        <div class="color-name">Pure White</div>
+                        <div class="color-codes">
+                            <div class="color-code">
+                                <span class="code-label">HEX</span>
+                                <span class="code-value">#FFFFFF</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">RGB</span>
+                                <span class="code-value">255, 255, 255</span>
+                            </div>
+                            <div class="color-code">
+                                <span class="code-label">HSL</span>
+                                <span class="code-value">0°, 0%, 100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section class="section">
+            <h2 class="section-title">Typography</h2>
+            <div class="typography-showcase">
+                <div class="font-family">
+                    <div class="font-name">Orbitron - Display & Headings</div>
+                    <p class="desc-text">
+                        A geometric sans-serif typeface perfect for tech and futuristic branding. Use for logos, headings, and emphasis.
+                    </p>
+                    <div class="font-samples">
+                        <div class="font-sample">
+                            <div class="sample-label">Extra Bold (800)</div>
+                            <div class="orbitron-sample" style="font-size: 2.5rem; font-weight: 800;">
+                                VIZION ARX SOLUTIONS
+                            </div>
+                        </div>
+                        <div class="font-sample">
+                            <div class="sample-label">Bold (700)</div>
+                            <div class="orbitron-sample" style="font-size: 2rem; font-weight: 700;">
+                                Innovative Technology Solutions
+                            </div>
+                        </div>
+                        <div class="font-sample">
+                            <div class="sample-label">Semi-Bold (600)</div>
+                            <div class="orbitron-sample" style="font-size: 1.5rem; font-weight: 600;">
+                                Transforming Vision into Reality
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-family">
+                    <div class="font-name">Inter - Body & UI Text</div>
+                    <p class="desc-text">
+                        A highly readable sans-serif optimized for user interfaces. Use for body text, navigation, and UI elements.
+                    </p>
+                    <div class="font-samples">
+                        <div class="font-sample">
+                            <div class="sample-label">Bold (700)</div>
+                            <div class="inter-sample" style="font-size: 1.3rem; font-weight: 700;">
+                                Empowering businesses through cutting-edge AR technology
+                            </div>
+                        </div>
+                        <div class="font-sample">
+                            <div class="sample-label">Semi-Bold (600)</div>
+                            <div class="inter-sample" style="font-size: 1.1rem; font-weight: 600;">
+                                Our solutions blend innovation with practicality to deliver exceptional results
+                            </div>
+                        </div>
+                        <div class="font-sample">
+                            <div class="sample-label">Regular (400)</div>
+                            <div class="inter-sample" style="font-size: 1rem; font-weight: 400; line-height: 1.8;">
+                                Vizion ARX Solutions specializes in augmented reality experiences that transform how businesses interact with their customers. Our team of experts combines technical excellence with creative vision to deliver immersive solutions that drive engagement and growth.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logo Variations Section -->
+        <section class="section">
+            <h2 class="section-title">Logo Variations</h2>
+            <p class="desc-text">
+                The Vizion ARX logo is designed to work across various backgrounds and contexts. Always maintain proper spacing and never distort the logo.
+            </p>
+            <div class="logo-grid">
+                <div class="logo-variant dark-bg">
+                    <img src="logo_transparent.png" alt="Logo on Dark Background">
+                    <div class="variant-label">Primary - Dark Background</div>
+                </div>
+                <div class="logo-variant light-bg">
+                    <img src="logo_transparent.png" alt="Logo on Light Background">
+                    <div class="variant-label">Primary - Light Background</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favicon Section -->
+        <section class="section">
+            <h2 class="section-title">Favicon & Icons</h2>
+            <p class="desc-text">
+                Multiple favicon sizes optimized for different devices and platforms. The ARX circular badge design with transparent background.
+            </p>
+            <div class="favicon-grid">
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="favicon-16x16.png" alt="16x16 Favicon" width="16" height="16">
+                    </div>
+                    <div class="favicon-label">Standard Favicon</div>
+                    <div class="favicon-size">16×16 pixels</div>
+                </div>
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="favicon-32x32.png" alt="32x32 Favicon" width="32" height="32">
+                    </div>
+                    <div class="favicon-label">Enhanced Favicon</div>
+                    <div class="favicon-size">32×32 pixels</div>
+                </div>
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="favicon-64x64.png" alt="64x64 Favicon" width="64" height="64">
+                    </div>
+                    <div class="favicon-label">High-Res Favicon</div>
+                    <div class="favicon-size">64×64 pixels</div>
+                </div>
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="apple-touch-icon.png" alt="180x180 Apple Touch Icon" width="90" height="90">
+                    </div>
+                    <div class="favicon-label">Apple Touch Icon</div>
+                    <div class="favicon-size">180×180 pixels</div>
+                </div>
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="favicon-512x512.png" alt="512x512 Favicon" width="128" height="128">
+                    </div>
+                    <div class="favicon-label">High-Res Icon</div>
+                    <div class="favicon-size">512×512 pixels</div>
+                </div>
+                <div class="favicon-item">
+                    <div class="favicon-preview">
+                        <img src="arx_logo_transparent.png" alt="ARX Logo Transparent" width="128" height="128">
+                    </div>
+                    <div class="favicon-label">Full Resolution</div>
+                    <div class="favicon-size">1082×1064 pixels</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage Guidelines Section -->
+        <section class="section">
+            <h2 class="section-title">Usage Guidelines</h2>
+            <div class="guidelines">
+                <div class="guideline-item">
+                    <div class="guideline-icon">✓</div>
+                    <div class="guideline-content">
+                        <h3>Clear Space</h3>
+                        <p>Always maintain a minimum clear space around the logo equal to the height of the "X" in ARX. This ensures the logo remains prominent and uncluttered.</p>
+                    </div>
+                </div>
+                <div class="guideline-item">
+                    <div class="guideline-icon">✓</div>
+                    <div class="guideline-content">
+                        <h3>Minimum Size</h3>
+                        <p>Never display the logo smaller than 120px wide for digital applications or 1 inch wide for print materials to maintain legibility.</p>
+                    </div>
+                </div>
+                <div class="guideline-item">
+                    <div class="guideline-icon">✓</div>
+                    <div class="guideline-content">
+                        <h3>Color Backgrounds</h3>
+                        <p>The logo works best on dark backgrounds (#0A0E27, #1A1F3A) or pure white. Avoid placing on busy patterns or mid-tone backgrounds.</p>
+                    </div>
+                </div>
+                <div class="guideline-item">
+                    <div class="guideline-icon">✗</div>
+                    <div class="guideline-content">
+                        <h3>Don't Distort</h3>
+                        <p>Never stretch, compress, or rotate the logo. Always maintain the original aspect ratio when scaling.</p>
+                    </div>
+                </div>
+                <div class="guideline-item">
+                    <div class="guideline-icon">✗</div>
+                    <div class="guideline-content">
+                        <h3>Don't Modify Colors</h3>
+                        <p>Never change the gradient colors or apply effects to the logo. Use only the provided logo files.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spacing System Section -->
+        <section class="section">
+            <h2 class="section-title">Spacing System</h2>
+            <p class="desc-text">
+                Consistent spacing creates visual harmony and improves readability. Use these values for margins, padding, and layout spacing.
+            </p>
+            <div class="spacing-grid">
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 8px;"></div>
+                    <div class="spacing-label">XS</div>
+                    <div class="spacing-value">8px / 0.5rem</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 16px;"></div>
+                    <div class="spacing-label">SM</div>
+                    <div class="spacing-value">16px / 1rem</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 24px;"></div>
+                    <div class="spacing-label">MD</div>
+                    <div class="spacing-value">24px / 1.5rem</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 32px;"></div>
+                    <div class="spacing-label">LG</div>
+                    <div class="spacing-value">32px / 2rem</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 48px;"></div>
+                    <div class="spacing-label">XL</div>
+                    <div class="spacing-value">48px / 3rem</div>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-visual" style="height: 64px;"></div>
+                    <div class="spacing-label">2XL</div>
+                    <div class="spacing-value">64px / 4rem</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Vizion ARX Solutions - Brand Design System</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">This design board contains all brand assets and guidelines for consistent implementation across all platforms.</p>
+        </footer>
+    </div>
+</body>
+</html>
